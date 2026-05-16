@@ -16,8 +16,6 @@ let db; // سنحفظ الاتصال هنا
 // ================================
 async function connectDB() {
   const client = new MongoClient(MONGODB_URI, {
-    tls: true,
-    tlsAllowInvalidCertificates: false,
     serverSelectionTimeoutMS: 5000,
   });
   await client.connect();
