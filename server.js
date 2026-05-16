@@ -15,7 +15,11 @@ let db; // سنحفظ الاتصال هنا
 // الاتصال بقاعدة البيانات
 // ================================
 async function connectDB() {
-  const client = new MongoClient(MONGODB_URI);
+  const client = new MongoClient(MONGODB_URI, {
+    tls: true,
+    tlsAllowInvalidCertificates: false,
+    serverSelectionTimeoutMS: 5000,
+  });
   await client.connect();
   db = client.db('todo-app');         // اسم قاعدة البيانات
   console.log('✅ متصل بـ MongoDB');
