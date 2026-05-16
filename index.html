@@ -252,11 +252,11 @@
       li.className = 'task-item' + (task.done ? ' done' : '');
       li.innerHTML = `
         <div class="check-wrap">
-          <input type="checkbox" id="cb-${task._id}" ${task.done ? 'checked' : ''} onchange="toggleTask(${task._id})"/>
+          <input type="checkbox" id="cb-${task._id}" ${task.done ? 'checked' : ''} onchange="toggleTask('${task._id}')"/>
           <label for="cb-${task._id}"></label>
         </div>
         <span class="task-text">${escapeHtml(task.text)}</span>
-        <button class="btn-delete" onclick="deleteTask(${task._id})">✕</button>
+        <button class="btn-delete" onclick="deleteTask('${task._id}')">✕</button>
       `;
       list.appendChild(li);
     });
