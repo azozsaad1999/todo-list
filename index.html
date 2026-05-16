@@ -203,7 +203,7 @@
   async function toggleTask(id) {
     const res  = await fetch(`${API}/tasks/${id}`, { method: 'PUT' }); // PUT /tasks/:id
     const updated = await res.json();
-    const task = tasks.find(t => t.id === id);
+    const task = tasks.find(t => t._id === id);
     if (task) task.done = updated.done;
     renderTasks();
   }
@@ -211,7 +211,7 @@
   // --- حذف مهمة ---
   async function deleteTask(id) {
     await fetch(`${API}/tasks/${id}`, { method: 'DELETE' }); // DELETE /tasks/:id
-    tasks = tasks.filter(t => t.id !== id);
+    tasks = tasks.filter(t => t._id !== id);
     renderTasks();
     showStatus('🗑 تم الحذف');
   }
@@ -220,7 +220,7 @@
   async function clearDone() {
     const doneTasks = tasks.filter(t => t.done);
     for (const t of doneTasks) {
-      await fetch(`${API}/tasks/${t.id}`, { method: 'DELETE' });
+      await fetch(`${API}/tasks/${t._id}`, { method: 'DELETE' });
     }
     tasks = tasks.filter(t => !t.done);
     renderTasks();
